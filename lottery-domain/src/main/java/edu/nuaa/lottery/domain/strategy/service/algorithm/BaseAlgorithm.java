@@ -3,6 +3,7 @@ package edu.nuaa.lottery.domain.strategy.service.algorithm;
 import edu.nuaa.lottery.domain.strategy.model.vo.AwardRateInfo;
 
 import java.math.BigDecimal;
+import java.security.SecureRandom;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
@@ -47,5 +48,9 @@ public abstract class BaseAlgorithm implements IDrawAlgorithm{
     protected int hashIdx(int val) {
         int hashCode = val * HASH_INCREMENT + HASH_INCREMENT;
         return hashCode & (RATE_TUPLE_LENGTH - 1);
+    }
+    protected int generateSecureRandomIntCode(int bound){
+        int random = new SecureRandom().nextInt(bound) + 1;
+        return random;
     }
 }

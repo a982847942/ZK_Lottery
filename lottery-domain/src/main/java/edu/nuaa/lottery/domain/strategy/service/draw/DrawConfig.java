@@ -1,7 +1,8 @@
 package edu.nuaa.lottery.domain.strategy.service.draw;
 
+import edu.nuaa.lottery.common.DrawAlgorithmConstants;
 import edu.nuaa.lottery.domain.strategy.service.algorithm.IDrawAlgorithm;
-import edu.nuaa.lottery.domain.strategy.service.algorithm.impl.DefaultRateRandomDrawAlgorithm;
+import edu.nuaa.lottery.domain.strategy.service.algorithm.impl.EntiretyRateRandomDrawAlgorithm;
 import edu.nuaa.lottery.domain.strategy.service.algorithm.impl.SingleRateRandomDrawAlgorithm;
 
 import javax.annotation.PostConstruct;
@@ -16,14 +17,14 @@ import java.util.concurrent.ConcurrentHashMap;
  */
 public class DrawConfig {
     @Resource
-    DefaultRateRandomDrawAlgorithm defaultRateRandomDrawAlgorithm;
+    EntiretyRateRandomDrawAlgorithm entiretyRateRandomDrawAlgorithm;
     @Resource
     SingleRateRandomDrawAlgorithm singleRateRandomDrawAlgorithm;
     public static Map<Integer, IDrawAlgorithm> drawAlgorithmMap = new ConcurrentHashMap<>();
     @PostConstruct
     public void init(){
-        drawAlgorithmMap.put(1,defaultRateRandomDrawAlgorithm);
-        drawAlgorithmMap.put(2,singleRateRandomDrawAlgorithm);
+        drawAlgorithmMap.put(DrawAlgorithmConstants.StrategyMode.SINGLE.getCode(),singleRateRandomDrawAlgorithm);
+        drawAlgorithmMap.put(DrawAlgorithmConstants.StrategyMode.ENTIRETY.getCode(), entiretyRateRandomDrawAlgorithm);
     }
 
 }

@@ -1,5 +1,9 @@
 package edu.nuaa.lottery.domain.strategy.model.res;
 
+import edu.nuaa.lottery.common.DrawAlgorithmConstants;
+import edu.nuaa.lottery.domain.strategy.model.vo.DrawAwardInfo;
+import edu.nuaa.lottery.infrastructure.po.Award;
+
 /**
  * @author brain
  * @version 1.0
@@ -8,14 +12,19 @@ package edu.nuaa.lottery.domain.strategy.model.res;
 public class DrawRes {
     private String uId;
     private Long strategyId;
-    private String rewardId;
-    private String awardName;
 
-    public DrawRes(String uId, Long strategyId, String rewardId, String awardName) {
+    private Integer drawState = DrawAlgorithmConstants.DrawState.FAIL.getCode();
+    private DrawAwardInfo drawAwardInfo;
+
+    public DrawRes(String uId, Long strategyId, Integer drawState) {
+        this(uId,strategyId,drawState,null);
+    }
+
+    public DrawRes(String uId, Long strategyId, Integer drawState, DrawAwardInfo drawAwardInfo) {
         this.uId = uId;
         this.strategyId = strategyId;
-        this.rewardId = rewardId;
-        this.awardName = awardName;
+        this.drawState = drawState;
+        this.drawAwardInfo = drawAwardInfo;
     }
 
     public String getuId() {
@@ -34,19 +43,19 @@ public class DrawRes {
         this.strategyId = strategyId;
     }
 
-    public String getRewardId() {
-        return rewardId;
+    public Integer getDrawState() {
+        return drawState;
     }
 
-    public void setRewardId(String rewardId) {
-        this.rewardId = rewardId;
+    public void setDrawState(Integer drawState) {
+        this.drawState = drawState;
     }
 
-    public String getAwardName() {
-        return awardName;
+    public DrawAwardInfo getDrawAwardInfo() {
+        return drawAwardInfo;
     }
 
-    public void setAwardName(String awardName) {
-        this.awardName = awardName;
+    public void setDrawAwardInfo(DrawAwardInfo drawAwardInfo) {
+        this.drawAwardInfo = drawAwardInfo;
     }
 }

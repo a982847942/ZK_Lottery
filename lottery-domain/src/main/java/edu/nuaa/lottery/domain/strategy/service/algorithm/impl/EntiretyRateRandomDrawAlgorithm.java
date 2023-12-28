@@ -1,5 +1,6 @@
 package edu.nuaa.lottery.domain.strategy.service.algorithm.impl;
 
+import edu.nuaa.lottery.common.DrawAlgorithmConstants;
 import edu.nuaa.lottery.domain.strategy.model.vo.AwardRateInfo;
 import edu.nuaa.lottery.domain.strategy.service.algorithm.BaseAlgorithm;
 import org.springframework.stereotype.Component;
@@ -14,8 +15,8 @@ import java.util.List;
  * @version 1.0
  * @date 2023/12/28 10:33
  */
-@Component("defaultRateRandomDrawAlgorithm")
-public class DefaultRateRandomDrawAlgorithm extends BaseAlgorithm {
+@Component("entiretyRateRandomDrawAlgorithm")
+public class EntiretyRateRandomDrawAlgorithm extends BaseAlgorithm {
 
     @Override
     public String randomDraw(Long strategyId, List<String> excludeAwardIds) {
@@ -35,12 +36,17 @@ public class DefaultRateRandomDrawAlgorithm extends BaseAlgorithm {
         }
 
         // 前置判断
-        if (differenceAwardRateList.size() == 0) return "";
-        if (differenceAwardRateList.size() == 1) return differenceAwardRateList.get(0).getAwardId();
+        if (differenceAwardRateList.size() == 0) {
+            return "";
+        }
+        if (differenceAwardRateList.size() == 1) {
+            return differenceAwardRateList.get(0).getAwardId();
+        }
 
         // 获取随机概率值
-        SecureRandom secureRandom = new SecureRandom();
-        int randomVal = secureRandom.nextInt(100) + 1;
+//        SecureRandom secureRandom = new SecureRandom();
+//        int randomVal = secureRandom.nextInt(100) + 1;
+        int randomVal = generateSecureRandomIntCode(DrawAlgorithmConstants.BOUND);
 
         // 循环获取奖品 时间复杂度O(n)
         String awardId = "";
