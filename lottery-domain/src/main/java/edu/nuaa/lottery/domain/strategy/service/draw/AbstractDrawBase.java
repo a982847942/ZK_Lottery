@@ -48,7 +48,7 @@ public abstract class AbstractDrawBase extends DrawStrategySupport implements ID
         }
         Award award = queryAwardInfoById(awardId);
         logger.info("执行策略抽奖完成【已中奖】，用户：{} 策略ID：{} 奖品ID：{} 奖品名称：{}", uId, strategyId, awardId, award.getAwardName());
-        return new DrawRes(uId,strategyId,DrawAlgorithmConstants.DrawState.SUCCESS.getCode(),new DrawAwardInfo(award.getAwardId(),award.getAwardName()));
+        return new DrawRes(uId,strategyId,DrawAlgorithmConstants.DrawState.SUCCESS.getCode(),new DrawAwardInfo(award.getAwardId(), award.getAwardType(), award.getAwardName(),award.getAwardContent()));
     }
 
     protected abstract String drawAlgorithm(Long strategyId, IDrawAlgorithm iDrawAlgorithm, List<String> excludeAwardIds);
@@ -56,9 +56,11 @@ public abstract class AbstractDrawBase extends DrawStrategySupport implements ID
     protected abstract List<String> queryExcludeAwardIds(Long strategyId);
 
     private void checkAndInitAwardTuple(Long strategyId, Integer strategyMode, List<StrategyDetail> strategyDetailList) {
-        if (!DrawAlgorithmConstants.StrategyMode.ENTIRETY.getCode().equals(strategyMode)) {
-            return;
-        }
+        // TODO: 2023/12/28 这样设置的话如果activity的strategyId为2，则awardTuple未初始化，因此会产生错误.
+        //本质原因还是在于initRateTuple职责划分不清楚！ 单项概率(需要使用hash加速)和整体概率(无法使用hash加速)需要初始化的内容不同。
+//        if (!DrawAlgorithmConstants.StrategyMode.SINGLE.getCode().equals(strategyMode)) {
+//            return;
+//        }
         IDrawAlgorithm drawAlgorithm = drawAlgorithmMap.get(strategyMode);
         if (drawAlgorithm.isExistRateTuple(strategyId)){
             return;

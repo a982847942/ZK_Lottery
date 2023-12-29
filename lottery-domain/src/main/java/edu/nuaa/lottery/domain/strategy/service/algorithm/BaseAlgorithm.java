@@ -43,6 +43,7 @@ public abstract class BaseAlgorithm implements IDrawAlgorithm{
 
     @Override
     public boolean isExistRateTuple(Long strategyId) {
+
         return rateTupleMap.containsKey(strategyId);
     }
     protected int hashIdx(int val) {
