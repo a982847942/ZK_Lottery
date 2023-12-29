@@ -1,7 +1,7 @@
 package edu.nuaa.lottery.domain.strategy.model.aggregates;
 
-import edu.nuaa.lottery.infrastructure.po.Strategy;
-import edu.nuaa.lottery.infrastructure.po.StrategyDetail;
+import edu.nuaa.lottery.domain.strategy.model.vo.StrategyBriefVO;
+import edu.nuaa.lottery.domain.strategy.model.vo.StrategyDetailBriefVO;
 
 import java.util.List;
 
@@ -11,27 +11,51 @@ import java.util.List;
  * @date 2023/12/28 10:15
  */
 public class StrategyRich {
-    private Strategy strategy;
-    private List<StrategyDetail> strategyDetails;
+    /**
+     * 策略ID
+     */
+    private Long strategyId;
 
-    public StrategyRich(Strategy strategy, List<StrategyDetail> strategyDetails) {
-        this.strategy = strategy;
-        this.strategyDetails = strategyDetails;
+    /**
+     * 策略配置
+     */
+    private StrategyBriefVO strategy;
+
+    /**
+     * 策略明细
+     */
+    private List<StrategyDetailBriefVO> strategyDetailList;
+
+    public StrategyRich() {
     }
 
-    public Strategy getStrategy() {
+    public StrategyRich(Long strategyId, StrategyBriefVO strategy, List<StrategyDetailBriefVO> strategyDetailList) {
+        this.strategyId = strategyId;
+        this.strategy = strategy;
+        this.strategyDetailList = strategyDetailList;
+    }
+
+    public Long getStrategyId() {
+        return strategyId;
+    }
+
+    public void setStrategyId(Long strategyId) {
+        this.strategyId = strategyId;
+    }
+
+    public StrategyBriefVO getStrategy() {
         return strategy;
     }
 
-    public void setStrategy(Strategy strategy) {
+    public void setStrategy(StrategyBriefVO strategy) {
         this.strategy = strategy;
     }
 
-    public List<StrategyDetail> getStrategyDetails() {
-        return strategyDetails;
+    public List<StrategyDetailBriefVO> getStrategyDetailList() {
+        return strategyDetailList;
     }
 
-    public void setStrategyDetails(List<StrategyDetail> strategyDetails) {
-        this.strategyDetails = strategyDetails;
+    public void setStrategyDetailList(List<StrategyDetailBriefVO> strategyDetailList) {
+        this.strategyDetailList = strategyDetailList;
     }
 }

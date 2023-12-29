@@ -1,8 +1,8 @@
 package edu.nuaa.lottery.domain.strategy.service.draw;
 
 import edu.nuaa.lottery.domain.strategy.model.aggregates.StrategyRich;
+import edu.nuaa.lottery.domain.strategy.model.vo.AwardBriefVO;
 import edu.nuaa.lottery.domain.strategy.repository.IStrategyRepository;
-import edu.nuaa.lottery.infrastructure.po.Award;
 
 import javax.annotation.Resource;
 
@@ -19,7 +19,7 @@ public class DrawStrategySupport extends DrawConfig{
         return iStrategyRepository.queryStrategyRich(strategyId);
     }
 
-    Award queryAwardInfoById(String awardId){
+    AwardBriefVO queryAwardInfoById(String awardId){
         return iStrategyRepository.queryAwardInfo(awardId);
     }
 }

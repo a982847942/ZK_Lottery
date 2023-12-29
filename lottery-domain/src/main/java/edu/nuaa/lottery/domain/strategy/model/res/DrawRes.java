@@ -2,7 +2,6 @@ package edu.nuaa.lottery.domain.strategy.model.res;
 
 import edu.nuaa.lottery.common.DrawAlgorithmConstants;
 import edu.nuaa.lottery.domain.strategy.model.vo.DrawAwardInfo;
-import edu.nuaa.lottery.infrastructure.po.Award;
 
 /**
  * @author brain
