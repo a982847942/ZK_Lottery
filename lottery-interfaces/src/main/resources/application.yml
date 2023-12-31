@@ -1,18 +1,42 @@
 server:
-  port: 80
-spring:
-  datasource:
-    username: root
-    password: zk10230705
-    driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://127.0.0.1:3306/lottery?useUnicode=true
+  port: 8080
+
+# 多数据源路由配置
+mini-db-router:
+  jdbc:
+    datasource:
+      dbCount: 2
+      tbCount: 4
+      default: db00
+      routerKey: uId
+      list: db01,db02
+      db00:
+        driver-class-name: com.mysql.jdbc.Driver
+        url: jdbc:mysql://127.0.0.1:3306/lottery?useUnicode=true
+        username: root
+        password: zk10230705
+      db01:
+        driver-class-name: com.mysql.jdbc.Driver
+        url: jdbc:mysql://127.0.0.1:3306/lottery_01?useUnicode=true
+        username: root
+        password: zk10230705
+      db02:
+        driver-class-name: com.mysql.jdbc.Driver
+        url: jdbc:mysql://127.0.0.1:3306/lottery_02?useUnicode=true
+        username: root
+        password: zk10230705
+
 mybatis:
   mapper-locations: classpath:/mybatis/mapper/*.xml
-  config-location: classpath:/mybatis/config/mybatis-config.xml
+  config-location:  classpath:/mybatis/config/mybatis-config.xml
+
+# Dubbo 广播方式配置，如果调用不稳定可以修改为直连模式：https://codechina.csdn.net/KnowledgePlanet/Lottery/-/issues/1
 dubbo:
   application:
     name: Lottery
     version: 1.0.0
+    parameters:
+      unicast: false
   registry:
     address: N/A #multicast://224.5.6.7:1234
   protocol:
