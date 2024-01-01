@@ -7,11 +7,14 @@ import edu.nuaa.lottery.common.AwardConstants;
 import edu.nuaa.lottery.common.DrawAlgorithmConstants;
 import edu.nuaa.lottery.domain.activity.model.aggregates.ActivityConfigRich;
 import edu.nuaa.lottery.domain.activity.model.req.ActivityConfigReq;
+import edu.nuaa.lottery.domain.activity.model.req.ParTakeReq;
+import edu.nuaa.lottery.domain.activity.model.res.ParTakeRes;
 import edu.nuaa.lottery.domain.activity.model.vo.ActivityVO;
 import edu.nuaa.lottery.domain.activity.model.vo.AwardVO;
 import edu.nuaa.lottery.domain.activity.model.vo.StrategyDetailVO;
 import edu.nuaa.lottery.domain.activity.model.vo.StrategyVO;
 import edu.nuaa.lottery.domain.activity.service.deploy.IActivityDeploy;
+import edu.nuaa.lottery.domain.activity.service.partake.IActivityPartake;
 import edu.nuaa.lottery.domain.activity.service.stateflow.IStateHandler;
 import org.junit.Before;
 import org.junit.Test;
@@ -45,6 +48,8 @@ public class ActivityTest {
     private IStateHandler stateHandler;
 
     private ActivityConfigRich activityConfigRich;
+    @Resource
+    private IActivityPartake activityPartake;
 
     /**
      * TODO：后面编写ID生成策略
@@ -173,6 +178,14 @@ public class ActivityTest {
         logger.info("审核通过，测试：{}", JSON.toJSONString(stateHandler.checkPass(100001L, ActivityConstants.ActivityState.ARRAIGNMENT)));
         logger.info("运行活动，测试：{}", JSON.toJSONString(stateHandler.doing(100001L, ActivityConstants.ActivityState.PASS)));
         logger.info("二次提审，测试：{}", JSON.toJSONString(stateHandler.checkPass(100001L, ActivityConstants.ActivityState.EDIT)));
+    }
+
+    @Test
+    public void test_activityPartake() {
+        ParTakeReq req = new ParTakeReq("Uhdgkw766120c", 100001L,new Date());
+        ParTakeRes res = activityPartake.doParTake(req);
+        logger.info("请求参数：{}", JSON.toJSONString(req));
+        logger.info("测试结果：{}", JSON.toJSONString(res));
     }
 
 }

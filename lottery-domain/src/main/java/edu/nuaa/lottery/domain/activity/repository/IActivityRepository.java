@@ -1,6 +1,7 @@
 package edu.nuaa.lottery.domain.activity.repository;
 
 import edu.nuaa.lottery.common.ActivityConstants;
+import edu.nuaa.lottery.domain.activity.model.req.ParTakeReq;
 import edu.nuaa.lottery.domain.activity.model.vo.*;
 
 import java.util.List;
@@ -46,4 +47,20 @@ public interface IActivityRepository {
      * @return              更新结果
      */
     boolean alterStatus(Long activityId, Enum<ActivityConstants.ActivityState> beforeState,Enum<ActivityConstants.ActivityState> afterState);
+
+    /**
+     * 查询活动账单信息【库存、状态、日期、个人参与次数】
+     * @param parTakeReq 参与活动请求
+     * @return    活动账单
+     */
+    ActivityBillVO queryActivityBills(ParTakeReq parTakeReq);
+
+    /**
+     * 扣减活动库存
+     * @param activityId   活动ID
+     * @return      扣减结果
+     */
+    int subtractionActivityStock(Long activityId);
+
+
 }
