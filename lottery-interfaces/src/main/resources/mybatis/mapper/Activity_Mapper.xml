@@ -11,7 +11,7 @@
         <result column="stock_count" property="stockCount"></result>
         <result column="stock_surplus_count" property="stockSurplusCount"></result>
         <result column="take_count" property="takeCount"></result>
-<!--        <result column="strategy_id" property="strategyId"></result>-->
+        <result column="strategy_id" property="strategyId"></result>
         <result column="state" property="state"></result>
         <result column="creator" property="creator"></result>
         <result column="create_time" property="createTime"></result>

@@ -1,55 +1,68 @@
-package edu.nuaa.lottery.infrastructure.po;
+package edu.nuaa.lottery.domain.activity.model.vo;
 
 import java.util.Date;
 
 /**
- * @description: 用户策略计算结果表
+ * 奖品单
  * @author brain
  * @version 1.0
- * @date 2023/12/31 12:42
+ * @date 2024/1/1 21:34
  */
-public class UserStrategyExport {
+public class DrawOrderVO {
 
-    /** 自增ID */
-    private Long id;
-    /** 用户ID */
+    /**
+     * 用户ID
+     */
     private String uId;
-    /** 活动ID */
+
+    /**
+     * 活动领取ID
+     */
+    private Long takeId;
+    /**
+     * 活动ID
+     */
     private Long activityId;
-    /** 订单ID */
+    /**
+     * 订单ID
+     */
     private Long orderId;
-    /** 策略ID */
+    /**
+     * 策略ID
+     */
     private Long strategyId;
-    /** 策略方式（1:单项概率、2:总体概率） */
+    /**
+     * 策略方式（1:单项概率、2:总体概率）
+     */
     private Integer strategyMode;
-    /** 发放奖品方式（1:即时、2:定时[含活动结束]、3:人工） */
+    /**
+     * 发放奖品方式（1:即时、2:定时[含活动结束]、3:人工）
+     */
     private Integer grantType;
-    /** 发奖时间 */
+    /**
+     * 发奖时间
+     */
     private Date grantDate;
-    /** 发奖状态 */
+    /**
+     * 发奖状态
+     */
     private Integer grantState;
-    /** 发奖ID */
+    /**
+     * 发奖ID
+     */
     private String awardId;
-    /** 奖品类型（1:文字描述、2:兑换码、3:优惠券、4:实物奖品） */
+    /**
+     * 奖品类型（1:文字描述、2:兑换码、3:优惠券、4:实物奖品）
+     */
     private Integer awardType;
-    /** 奖品名称 */
+    /**
+     * 奖品名称
+     */
     private String awardName;
-    /** 奖品内容「文字描述、Key、码」 */
+    /**
+     * 奖品内容「文字描述、Key、码」
+     */
     private String awardContent;
-    /** 防重ID */
-    private String uuid;
-    /** 创建时间 */
-    private Date createTime;
-    /** 更新时间 */
-    private Date updateTime;
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
 
     public String getuId() {
         return uId;
@@ -57,6 +70,14 @@ public class UserStrategyExport {
 
     public void setuId(String uId) {
         this.uId = uId;
+    }
+
+    public Long getTakeId() {
+        return takeId;
+    }
+
+    public void setTakeId(Long takeId) {
+        this.takeId = takeId;
     }
 
     public Long getActivityId() {
@@ -147,27 +168,24 @@ public class UserStrategyExport {
         this.awardContent = awardContent;
     }
 
-    public String getUuid() {
-        return uuid;
+    @Override
+    public String toString() {
+        return "DrawOrderVO{" +
+                "uId='" + uId + '\'' +
+                ", takeId=" + takeId +
+                ", activityId=" + activityId +
+                ", orderId=" + orderId +
+                ", strategyId=" + strategyId +
+                ", strategyMode=" + strategyMode +
+                ", grantType=" + grantType +
+                ", grantDate=" + grantDate +
+                ", grantState=" + grantState +
+                ", awardId='" + awardId + '\'' +
+                ", awardType=" + awardType +
+                ", awardName='" + awardName + '\'' +
+                ", awardContent='" + awardContent + '\'' +
+                '}';
     }
 
-    public void setUuid(String uuid) {
-        this.uuid = uuid;
-    }
-
-    public Date getCreateTime() {
-        return createTime;
-    }
-
-    public void setCreateTime(Date createTime) {
-        this.createTime = createTime;
-    }
-
-    public Date getUpdateTime() {
-        return updateTime;
-    }
-
-    public void setUpdateTime(Date updateTime) {
-        this.updateTime = updateTime;
-    }
 }
+

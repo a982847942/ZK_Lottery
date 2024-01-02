@@ -1,14 +1,14 @@
-package edu.nuaa.lottery.infrastructure.po;
+package edu.nuaa.lottery.domain.activity.model.vo;
 
 import java.util.Date;
 
 /**
+ * @description: 用户领取活动记录
  * @author brain
  * @version 1.0
- * @date 2023/12/31 12:42
+ * @date 2024/1/1 21:51
  */
-public class UserTakeActivity {
-
+public class UserTakeActivityVO {
     /**
      * 自增ID
      */
@@ -159,4 +159,3 @@ public class UserTakeActivity {
         this.updateTime = updateTime;
     }
 }
-
