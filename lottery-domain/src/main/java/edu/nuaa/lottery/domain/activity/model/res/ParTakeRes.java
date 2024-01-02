@@ -12,6 +12,7 @@ public class ParTakeRes extends Result {
      * 策略ID
      */
     private Long strategyId;
+    private Long takeId;
 
     public ParTakeRes(String code, String info) {
         super(code, info);
@@ -23,5 +24,19 @@ public class ParTakeRes extends Result {
 
     public void setStrategyId(Long strategyId) {
         this.strategyId = strategyId;
+    }
+
+    public ParTakeRes(String code, String info, Long strategyId, Long takeId) {
+        super(code, info);
+        this.strategyId = strategyId;
+        this.takeId = takeId;
+    }
+
+    public Long getTakeId() {
+        return takeId;
+    }
+
+    public void setTakeId(Long takeId) {
+        this.takeId = takeId;
     }
 }

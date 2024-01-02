@@ -29,6 +29,8 @@ mini-db-router:
 mybatis:
   mapper-locations: classpath:/mybatis/mapper/*.xml
   config-location:  classpath:/mybatis/config/mybatis-config.xml
+#  configuration:
+#    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
 
 # Dubbo 广播方式配置，如果调用不稳定可以修改为直连模式：https://codechina.csdn.net/KnowledgePlanet/Lottery/-/issues/1
 dubbo:
