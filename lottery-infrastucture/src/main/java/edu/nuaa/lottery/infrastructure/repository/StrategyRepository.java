@@ -13,6 +13,7 @@ import edu.nuaa.lottery.infrastructure.po.Strategy;
 import edu.nuaa.lottery.infrastructure.po.StrategyDetail;
 import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Repository;
 
 import javax.annotation.Resource;
 import java.util.ArrayList;
@@ -23,7 +24,7 @@ import java.util.List;
  * @version 1.0
  * @date 2023/12/29 10:51
  */
-@Component
+@Repository
 public class StrategyRepository implements IStrategyRepository {
     @Resource
     IStrategyDao iStrategyDao;

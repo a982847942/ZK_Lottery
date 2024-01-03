@@ -10,6 +10,7 @@ import edu.nuaa.lottery.infrastructure.po.UserStrategyExport;
 import edu.nuaa.lottery.infrastructure.po.UserTakeActivity;
 import edu.nuaa.lottery.infrastructure.po.UserTakeActivityCount;
 import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Repository;
 
 import javax.annotation.Resource;
 import java.util.Date;
@@ -19,7 +20,7 @@ import java.util.Date;
  * @version 1.0
  * @date 2023/12/31 17:23
  */
-@Component
+@Repository
 public class UserTakeActivityRepository implements IUserTakeActivityRepository {
     @Resource
     private IUserTakeActivityCountDao userTakeActivityCountDao;
