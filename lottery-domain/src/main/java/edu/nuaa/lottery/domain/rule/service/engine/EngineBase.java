@@ -23,6 +23,7 @@ public abstract class EngineBase extends EngineConfig implements EngineFilter {
 
     @Override
     public EngineResult process(DecisionMatterReq matter) {
+        //一种编程技巧，子类必须实现，不实现调用时抛异常
         throw new RuntimeException("未实现规则引擎服务");
     }
     protected TreeNodeVO engineDecisionMaker(TreeRuleRich treeRuleRich, DecisionMatterReq matter) {

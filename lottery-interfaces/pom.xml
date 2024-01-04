@@ -63,6 +63,15 @@
             <artifactId>lottery-db-router-spring-boot-starter</artifactId>
             <version>1.0-SNAPSHOT</version>
         </dependency>
+        <dependency>
+            <groupId>org.mapstruct</groupId>
+            <artifactId>mapstruct</artifactId>
+        </dependency>
+        <!-- https://mvnrepository.com/artifact/org.mapstruct/mapstruct-processor -->
+        <dependency>
+            <groupId>org.mapstruct</groupId>
+            <artifactId>mapstruct-processor</artifactId>
+        </dependency>
 
         <dependency>
             <groupId>edu.nuaa</groupId>
@@ -82,6 +91,11 @@
         <dependency>
             <groupId>edu.nuaa</groupId>
             <artifactId>lottery-application</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
+        <dependency>
+            <groupId>edu.nuaa</groupId>
+            <artifactId>lottery-common</artifactId>
             <version>1.0-SNAPSHOT</version>
         </dependency>
     </dependencies>

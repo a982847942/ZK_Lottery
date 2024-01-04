@@ -38,14 +38,14 @@ public abstract class AbstractDrawBase extends DrawStrategySupport implements ID
         return buildDrawResult(req.getuId(), req.getStrategyId(), awardId,strategy);
     }
 
-    private DrawRes buildDrawResult(String uId, Long strategyId, String awardId,StrategyBriefVO strategy) {
+    private DrawRes buildDrawResult(String uId, Long strategyId, String awardId, StrategyBriefVO strategy) {
         if (null == awardId) {
             logger.info("执行策略抽奖完成【未中奖】，用户：{} 策略ID：{}", uId, strategyId);
             return new DrawRes(uId, strategyId, DrawAlgorithmConstants.DrawState.FAIL.getCode());
         }
 
         AwardBriefVO award = super.queryAwardInfoById(awardId);
-        DrawAwardInfo drawAwardInfo = new DrawAwardInfo(award.getAwardId(), award.getAwardType(), award.getAwardName(), award.getAwardContent());
+        DrawAwardVO drawAwardInfo = new DrawAwardVO(uId, award.getAwardId(), award.getAwardType(), award.getAwardName(), award.getAwardContent());
         drawAwardInfo.setStrategyMode(strategy.getStrategyMode());
         drawAwardInfo.setGrantType(strategy.getGrantType());
         drawAwardInfo.setGrantDate(strategy.getGrantDate());
@@ -68,11 +68,11 @@ public abstract class AbstractDrawBase extends DrawStrategySupport implements ID
         if (drawAlgorithm.isExistRateTuple(strategyId)){
             return;
         }
-        List<AwardRateInfo> awardRateInfoList = new ArrayList<>();
+        List<AwardRateVO> awardRateVOList = new ArrayList<>();
         for (StrategyDetailBriefVO strategyDetail : strategyDetailList) {
-            awardRateInfoList.add(new AwardRateInfo(strategyDetail.getAwardId(),strategyDetail.getAwardRate()));
+            awardRateVOList.add(new AwardRateVO(strategyDetail.getAwardId(),strategyDetail.getAwardRate()));
         }
 
-        drawAlgorithm.initRateTuple(strategyId,awardRateInfoList);
+        drawAlgorithm.initRateTuple(strategyId, awardRateVOList);
     }
 }

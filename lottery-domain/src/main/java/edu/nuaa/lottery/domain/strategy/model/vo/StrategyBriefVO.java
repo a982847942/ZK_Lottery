@@ -85,4 +85,16 @@ public class StrategyBriefVO {
     public void setExtInfo(String extInfo) {
         this.extInfo = extInfo;
     }
+
+    @Override
+    public String toString() {
+        return "StrategyBriefVO{" +
+                "strategyId=" + strategyId +
+                ", strategyDesc='" + strategyDesc + '\'' +
+                ", strategyMode=" + strategyMode +
+                ", grantType=" + grantType +
+                ", grantDate=" + grantDate +
+                ", extInfo='" + extInfo + '\'' +
+                '}';
+    }
 }
