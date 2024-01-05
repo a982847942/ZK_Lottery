@@ -7,11 +7,21 @@ import java.math.BigDecimal;
  * @version 1.0
  * @date 2023/12/28 10:21
  */
-public class AwardRateInfo {
+public class AwardRateVO {
+    /**
+     * 奖品ID
+     */
     private String awardId;
+
+    /**
+     * 中奖概率
+     */
     private BigDecimal awardRate;
 
-    public AwardRateInfo(String awardId, BigDecimal awardRate) {
+    public AwardRateVO() {
+    }
+
+    public AwardRateVO(String awardId, BigDecimal awardRate) {
         this.awardId = awardId;
         this.awardRate = awardRate;
     }
@@ -30,5 +40,13 @@ public class AwardRateInfo {
 
     public void setAwardRate(BigDecimal awardRate) {
         this.awardRate = awardRate;
+    }
+
+    @Override
+    public String toString() {
+        return "AwardRateVO{" +
+                "awardId='" + awardId + '\'' +
+                ", awardRate=" + awardRate +
+                '}';
     }
 }

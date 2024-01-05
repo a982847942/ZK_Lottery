@@ -15,6 +15,9 @@ import java.util.concurrent.ConcurrentHashMap;
  * @date 2024/1/2 15:58
  */
 public class EngineConfig {
+    /**
+     * 过滤器集合对象
+     */
     protected static Map<String, LogicFilter> logicFilterMap = new ConcurrentHashMap<>();
 
     @Resource
