@@ -55,10 +55,11 @@ public class ActivityParTakeImpl extends BaseActivityParTake {
 
                     // 插入领取活动信息
 //                    Long takeId = idGeneratorMap.get(SupportConstants.IDS.SnowFlake).nextId();
-                    userTakeActivityRepository.takeActivity(activityBillVO.getActivityId(),activityBillVO.getActivityName(), activityBillVO.getTakeCount(), activityBillVO.getUserTakeLeftCount(), parTakeReq.getuId(), parTakeReq.getParTakeDate(), takeId);
+                    // 写入领取活动记录
+                    userTakeActivityRepository.takeActivity(activityBillVO.getActivityId(), activityBillVO.getActivityName(), activityBillVO.getStrategyId(), activityBillVO.getTakeCount(), activityBillVO.getUserTakeLeftCount(), parTakeReq.getuId(), parTakeReq.getParTakeDate(), takeId);
                 } catch (DuplicateKeyException e) {
                     status.setRollbackOnly();
-                    logger.error("领取活动，唯一索引冲突 activityId：{} uId：{}", parTakeReq.getActivityId(), parTakeReq.getuId(), e);
+                    logger.error("领取活动，唯一索引冲突 activityId：{} uId：{} error: {}", parTakeReq.getActivityId(), parTakeReq.getuId(), e);
                     return Result.buildResult(Constants.ResponseCode.INDEX_DUP);
                 }
                 return Result.buildSuccessResult();
@@ -126,7 +127,7 @@ public class ActivityParTakeImpl extends BaseActivityParTake {
                     userTakeActivityRepository.saveUserStrategyExport(drawOrder);
                 } catch (DuplicateKeyException e) {
                     status.setRollbackOnly();
-                    logger.error("记录中奖单，唯一索引冲突 activityId：{} uId：{}", drawOrder.getActivityId(), drawOrder.getuId(), e);
+                    logger.error("记录中奖单，唯一索引冲突 activityId：{} uId：{} error: {}", drawOrder.getActivityId(), drawOrder.getuId(), e);
                     return Result.buildResult(Constants.ResponseCode.INDEX_DUP);
                 }
                 return Result.buildSuccessResult();
@@ -135,5 +136,10 @@ public class ActivityParTakeImpl extends BaseActivityParTake {
             dbRouter.clear();
         }
 
+    }
+
+    @Override
+    public void updateInvoiceMqState(String uId, Long orderId, Integer mqState) {
+        userTakeActivityRepository.updateInvoiceMqState(uId, orderId, mqState);
     }
 }

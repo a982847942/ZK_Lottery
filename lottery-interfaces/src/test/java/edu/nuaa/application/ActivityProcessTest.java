@@ -13,6 +13,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import javax.annotation.Resource;
+import java.util.List;
 
 /**
  * @author brain
@@ -28,15 +29,24 @@ public class ActivityProcessTest {
     @Resource
     private IActivityProcess activityProcess;
 
+    //    @Test
+//    public void test_doDrawProcess() {
+//        DrawProcessReq req = new DrawProcessReq();
+//        req.setuId("fustack");
+//        req.setActivityId(100001L);
+//        DrawProcessResult drawProcessResult = activityProcess.doDrawProcess(req);
+//
+//        logger.info("请求入参：{}", JSON.toJSONString(req));
+//        logger.info("测试结果：{}", JSON.toJSONString(drawProcessResult));
+//    }
     @Test
     public void test_doDrawProcess() {
         DrawProcessReq req = new DrawProcessReq();
-        req.setuId("fustack");
+        req.setuId("xiaofuge");
         req.setActivityId(100001L);
         DrawProcessResult drawProcessResult = activityProcess.doDrawProcess(req);
 
         logger.info("请求入参：{}", JSON.toJSONString(req));
         logger.info("测试结果：{}", JSON.toJSONString(drawProcessResult));
     }
-
 }

@@ -82,3 +82,15 @@ dubbo:
     port: 20880
   scan:
     base-packages: edu.nuaa.lottery.rpc
+
+logging:
+  pattern:
+#    file: "%d{HH:mm:ss.SSS} [%thread] %highlight(%-5level) %cyan(%logger{15} - %msg %n)"     #文件输出
+    console: "%d{HH:mm:ss.SSS} [%thread] %highlight(%-5level) %cyan(%logger{15} - %msg %n)"  #控制台输出
+#  file:
+#    name: F:\logs\spb.log #文件输出路径
+  level:
+    root: info #全局最低输出级别
+    org.apache.kafka.clients: error
+#    com.snow: debug #特定包下的级别
+

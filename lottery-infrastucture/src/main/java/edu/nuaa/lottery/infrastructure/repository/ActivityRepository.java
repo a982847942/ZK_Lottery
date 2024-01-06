@@ -84,7 +84,7 @@ public class ActivityRepository implements IActivityRepository {
         UserTakeActivityCount userTakeActivityCountReq = new UserTakeActivityCount();
         userTakeActivityCountReq.setuId(parTakeReq.getuId());
         userTakeActivityCountReq.setActivityId(parTakeReq.getActivityId());
-        //为手动设置路由 采用@DBRouter注解让切面拦截  读取yml配置默认路由设置路由 routerKey: uId
+        //未手动设置路由 采用@DBRouter注解让切面拦截  读取yml配置默认路由设置路由 routerKey: uId
         // TODO: 2024/1/1 如果此时只是发布了活动，但是用户信息不太可能要手动添加，应该是在用户参与时发现没有记录再执行初始化插入，这里逻辑有问题？
         UserTakeActivityCount userTakeActivityCount = userTakeActivityDetailDao.queryUserTakeActivityCount(userTakeActivityCountReq);
 

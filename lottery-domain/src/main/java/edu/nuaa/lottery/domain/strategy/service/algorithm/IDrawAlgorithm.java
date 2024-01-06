@@ -1,6 +1,6 @@
 package edu.nuaa.lottery.domain.strategy.service.algorithm;
 
-import edu.nuaa.lottery.domain.strategy.model.vo.AwardRateInfo;
+import edu.nuaa.lottery.domain.strategy.model.vo.AwardRateVO;
 
 import java.util.List;
 
@@ -14,9 +14,9 @@ public interface IDrawAlgorithm {
      *
      * 初始化奖品数组
      * @param strategyId
-     * @param awardRateInfoList
+     * @param awardRateVOList
      */
-    void initRateTuple(Long strategyId, List<AwardRateInfo> awardRateInfoList);
+    void initRateTuple(Long strategyId, List<AwardRateVO> awardRateVOList);
 
     /**
      * 判断该活动下 ID为StrategyID的策略是否进行过初始化

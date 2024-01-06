@@ -2,7 +2,6 @@ package edu.nuaa.lottery.domain.strategy.repository;
 
 import edu.nuaa.lottery.domain.strategy.model.aggregates.StrategyRich;
 import edu.nuaa.lottery.domain.strategy.model.vo.AwardBriefVO;
-import edu.nuaa.lottery.domain.strategy.model.vo.AwardRateInfo;
 
 
 import java.util.List;

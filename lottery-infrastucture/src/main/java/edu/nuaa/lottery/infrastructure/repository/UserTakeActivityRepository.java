@@ -1,5 +1,6 @@
 package edu.nuaa.lottery.infrastructure.repository;
 
+import edu.nuaa.lottery.common.ActivityConstants;
 import edu.nuaa.lottery.domain.activity.model.vo.DrawOrderVO;
 import edu.nuaa.lottery.domain.activity.model.vo.UserTakeActivityVO;
 import edu.nuaa.lottery.domain.activity.repository.IUserTakeActivityRepository;
@@ -50,7 +51,7 @@ public class UserTakeActivityRepository implements IUserTakeActivityRepository {
     }
 
     @Override
-    public void takeActivity(Long activityId, String activityName, Integer takeCount, Integer userTakeLeftCount, String uId, Date takeDate, Long takeId) {
+    public void takeActivity(Long activityId, String activityName, Long strategyId, Integer takeCount, Integer userTakeLeftCount, String uId, Date takeDate, Long takeId) {
         UserTakeActivity userTakeActivity = new UserTakeActivity();
         userTakeActivity.setuId(uId);
         userTakeActivity.setTakeId(takeId);
@@ -62,6 +63,8 @@ public class UserTakeActivityRepository implements IUserTakeActivityRepository {
         } else {
             userTakeActivity.setTakeCount(takeCount - userTakeLeftCount + 1);
         }
+        userTakeActivity.setStrategyId(strategyId);
+        userTakeActivity.setState(ActivityConstants.TaskState.NO_USED.getCode());
         String uuid = uId + "_" + activityId + "_" + userTakeActivity.getTakeCount();
         userTakeActivity.setUuid(uuid);
 
@@ -115,5 +118,14 @@ public class UserTakeActivityRepository implements IUserTakeActivityRepository {
         userStrategyExport.setUuid(String.valueOf(drawOrder.getOrderId()));
 
         userStrategyExportDao.insert(userStrategyExport);
+    }
+
+    @Override
+    public void updateInvoiceMqState(String uId, Long orderId, Integer mqState) {
+        UserStrategyExport userStrategyExport = new UserStrategyExport();
+        userStrategyExport.setuId(uId);
+        userStrategyExport.setOrderId(orderId);
+        userStrategyExport.setMqState(mqState);
+        userStrategyExportDao.updateInvoiceMqState(userStrategyExport);
     }
 }
